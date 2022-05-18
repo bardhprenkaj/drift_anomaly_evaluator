@@ -7,6 +7,8 @@ def evaluate(y_true, y_pred, series_len, debug=False):
     recs = []
     fs = []
 
+    if len(y_pred) == 0: return 0,0,0
+
     if len(y_true) > 1 and len(y_pred) > 1: mid_points = [0] + [(y_true[i+1][0] + y_true[i][1]) // 2 for i in range(len(y_true)-1)] + [series_len-1]
     else: mid_points = [0, series_len - 1]
 
