@@ -27,9 +27,12 @@ class BoxIntersectionMetric(AbstractMetric):
         return box(a, 0, b, 1)
 
     def calc_metric(self, recall=True):
+        if len(self.pred_boxes) == 0 : return 0, [0]
+
         metric = np.empty(shape=(len(self.pred_boxes), len(self.true_boxes)))
 
         def get_area(pred_box, true_box, recall=True):
+            if pred_box.area == 0: return 0
             return pred_box.intersection(true_box).area / (true_box.area if recall else pred_box.area)
 
         for i_pred in range(len(self.pred_boxes)):

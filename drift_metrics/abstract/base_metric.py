@@ -17,5 +17,5 @@ class AbstractMetric(ABC):
     def f_score(self, beta=1):
         p, _ = self.precision()
         r, _ = self.recall()
-        
-        return (1 + beta**2) * (p * r) / ((beta**2 * p) + r)
+
+        return (1 + beta**2) * (p * r) / ((beta**2 * p) + r) if (p != 0 and r != 0) else 0

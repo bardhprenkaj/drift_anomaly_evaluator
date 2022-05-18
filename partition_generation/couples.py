@@ -8,4 +8,4 @@ class OneAfterTheOtherPartitioner(AbstractPartitioner):
         super().__init__(array)
 
     def partition(self):
-        return np.array([[self.array[i-1], self.array[i]] for i in range(len(self.array)-1, 0, -1)])
+        return np.array([[self.array[i], self.array[i+1]] for i in range(0, len(self.array)-1)])
